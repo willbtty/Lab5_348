@@ -3,6 +3,7 @@
 void Monthly_sales_report(float sales[12])
 //Print out all the sales with the according month. Hardcoded
 {
+    //Mainually print out each month and it's corresponding sale
     printf("Monthly Sales Report for 2022:\n");
     printf("Month\tSales\n");
     printf("January\t%.2f\n", sales[0]);
@@ -36,7 +37,7 @@ void Sales_Summary(float sales[12])
     }
 
     average = average / 12; //Divides by 12 to find the avg.
-    printf("Minimum sales: %.2f\n", min); //Need to get it to print the month
+    printf("Minimum sales: %.2f\n", min); // Prints the min, max and average for the year
     printf("Maximum sales: %.2f\n", max);
     printf("Average sales: %.2f\n", average);
 }
@@ -45,7 +46,7 @@ void six_month_moving_average(float sales[12], const char *dates[])
 {
     float six_month_avg[7];
 
-    for (int j = 0; j < 7; j++){
+    for (int j = 0; j < 7; j++){ // set all elements in the array to zero
         six_month_avg[j] = 0.0;
     }
 
@@ -53,11 +54,11 @@ void six_month_moving_average(float sales[12], const char *dates[])
         for (int j = 0; j < 6; j++){
             six_month_avg[i] += sales[i + j];
         }
-        six_month_avg[i] /= 6.0;
+        six_month_avg[i] /= 6.0; // Divide to avg them out
     }
-    for (int i=0; i < 7; i++){
+    for (int i=0; i < 7; i++){ // Manually print out the months with the average
         if (i == 0){
-        printf("January - June\t%.2f\n", six_month_avg[i]);
+        printf("January - June\t%.2f\n", six_month_avg[i]); 
         }
         else if (i == 1){
             printf("Feburary - July\t%.2f\n", six_month_avg[i]);
@@ -80,20 +81,20 @@ void six_month_moving_average(float sales[12], const char *dates[])
     }
 }
 
-void swap(int *a, int *b)
+void swap(int *a, int *b) // Set up a swap function
 {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-typedef struct {
+typedef struct { // Create a struct so the month is now associated with the sale for sorting
     const char *month;
     float sale;
 } SaleMonth;
 
 void sortSales(SaleMonth salesMonths[12]) {
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 11; i++) { //Use bubble sort
         for (int j = 0; j < 11 - i; j++) {
             if (salesMonths[j].sale < salesMonths[j + 1].sale) {
                 SaleMonth temp = salesMonths[j];
